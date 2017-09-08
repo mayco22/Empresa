@@ -48,7 +48,7 @@ public class Funcionario {
             System.out.println("Digite o Departamento");
             d.setNome(in.next());
         }catch(Exception e){
-            System.out.println(e);
+            System.out.println("erro:" + e);
         }
         
     }
@@ -65,7 +65,7 @@ public class Funcionario {
     }
     public int validarFaltas(){
         Scanner in = new Scanner(System.in);
-        int f = 0;
+        int f;
         System.out.println("Digite Suas faltas:");
         f = in.nextInt();
         while(f > 30){
@@ -79,8 +79,26 @@ public class Funcionario {
         return f;
     }
     public void calcularSL(){
-        float SBR = calcularSB();
+        float SBR = calcularSB(),SL=0;
+        
         if(SBR > 0){
+            if (SBR <= 1903.98) {
+                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto * 0)));
+            }
+            if (SBR <= 2826.65 && SBR > 1903.98) {
+                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.705)));
+            }
+            if (SBR <= 3751.05 && SBR > 2826.65) {
+                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.15)));
+            }
+            if (SBR <= 4664.68 && SBR > 3751.05) {
+                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.2205)));
+            }
+            if (SBR > 4664.68) {
+                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.2705)));
+            }
+            
+            System.out.println("Salario Liquido:"+SL);
             
         }else
             System.out.println("Erro");

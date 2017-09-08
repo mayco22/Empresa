@@ -1,19 +1,38 @@
 package Funcoes;
 
+import java.util.Scanner;
+
 public class Departamento {
     
     private int id;
     private String nome;
     private int ramal;
-    private String emial;
+    private String email;
     private Funcionario diretor;
     
     public void cadastrarDepto(){
+        Scanner in = new Scanner(System.in);
+        
         System.out.println("Digite o departemento:");
+        id = in.nextInt();
         System.out.println("Digite o nome do departamento:");
+        nome = in.next();
         System.out.println("Digite o Ramal:");
+        ramal = in.nextInt();
         System.out.println("Digite o email:");
+        email = in.next();
         System.out.println("Digito o nome do diretor responsavel:");
+        diretor = buscaFuncionario();
+    }
+    public Funcionario buscaFuncionario(){
+        
+        Funcionario f = new Funcionario();
+        Scanner in = new Scanner(System.in);
+        
+        System.out.println("Digite o nome do funcionario:");
+        String nome = in.next();
+        
+        return f;
     }
 
     /**
@@ -62,14 +81,14 @@ public class Departamento {
      * @return the emial
      */
     public String getEmial() {
-        return emial;
+        return email;
     }
 
     /**
      * @param emial the emial to set
      */
     public void setEmial(String emial) {
-        this.emial = emial;
+        this.email = emial;
     }
 
     /**

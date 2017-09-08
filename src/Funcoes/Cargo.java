@@ -10,6 +10,7 @@ public class Cargo {
     public void cadastrarCargo(){
         
         Scanner in = new Scanner(System.in);
+        
         System.out.println("Digite o cargo:");
         System.out.println("Digite a titulacao minima:");
     }

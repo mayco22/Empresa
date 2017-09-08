@@ -27,9 +27,7 @@ public class Empresa {
                    case 2:break;
                    case 3:break;
                    case 4:f.calcularSB();break;
-                   case 5:break;
-                   case 6:break;
-                   case 7:break;
+                   case 5:f.calcularSL();break;
                    default:System.out.println("Opcao incorreta! Digite Novamente");break;
            }
        }
