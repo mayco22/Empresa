@@ -11,10 +11,9 @@ public class Departamento {
     private Funcionario diretor;
     
     public void cadastrarDepto(){
+        
         Scanner in = new Scanner(System.in);
         
-        System.out.println("Digite o departemento:");
-        id = in.nextInt();
         System.out.println("Digite o nome do departamento:");
         nome = in.next();
         System.out.println("Digite o Ramal:");
@@ -23,6 +22,8 @@ public class Departamento {
         email = in.next();
         System.out.println("Digito o nome do diretor responsavel:");
         diretor = buscaFuncionario();
+        
+        id++;
     }
     public Funcionario buscaFuncionario(){
         

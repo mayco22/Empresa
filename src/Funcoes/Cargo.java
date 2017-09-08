@@ -12,7 +12,11 @@ public class Cargo {
         Scanner in = new Scanner(System.in);
         
         System.out.println("Digite o cargo:");
+        nome = in.next();
         System.out.println("Digite a titulacao minima:");
+        titulacaoMinima = in.next();
+        
+        id++;
     }
 
     /**

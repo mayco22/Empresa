@@ -9,6 +9,8 @@ public class Empresa {
     public static void main(String[] args) {
 
        Funcionario f = new Funcionario();
+       Cargo c = new Cargo();
+       Departamento d = new Departamento();
        Scanner in = new Scanner(System.in);
        int menu=0;
        float cash;
@@ -24,8 +26,8 @@ public class Empresa {
            menu = in.nextInt();
            switch(menu){
                    case 1:f.Cadastro();break;
-                   case 2:break;
-                   case 3:break;
+                   case 2:d.cadastrarDepto();break;
+                   case 3:c.cadastrarCargo();break;
                    case 4:f.calcularSB();break;
                    case 5:f.calcularSL();break;
                    default:System.out.println("Opcao incorreta! Digite Novamente");break;
