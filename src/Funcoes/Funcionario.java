@@ -15,7 +15,7 @@ public class Funcionario {
     private int qtDependentes;
     private Departamento deptno;
     private Cargo cargo;
-   
+    private int faltas;
 
     
     public void Cadastro(){
@@ -55,28 +55,28 @@ public class Funcionario {
     public float calcularSB(){
         float SBR=0;
         if (salarioBruto > 0) {
-            float f = validarFaltas();
-            SBR = salarioBruto -((salarioBruto/30)*f);
+            
+            SBR = salarioBruto -((salarioBruto/30)* faltas);
             System.out.println("Seu salario Bruto é:"+ SBR);
             
         }else
             System.out.println("Fassa seu cadastro para analizar seu salario.");
         return SBR;
     }
-    public int validarFaltas(){
+    public void validarFaltas(){
         Scanner in = new Scanner(System.in);
-        int f;
+        
         System.out.println("Digite Suas faltas:");
-        f = in.nextInt();
-        while(f > 30){
-            if (f > 30) {
+        faltas = in.nextInt();
+        while(faltas > 30){
+            if (faltas > 30) {
                 System.out.println("Digite um valor valido(de 1 a 30):");
-                f = in.nextInt();
+                faltas = in.nextInt();
             }else
                 System.out.print("Erro!,");
         }
-        System.out.println(f +" Faltas.");
-        return f;
+        System.out.println(faltas +" Faltas.");
+        
     }
     public void calcularSL(){
         float SBR = calcularSB(),SL=0;
