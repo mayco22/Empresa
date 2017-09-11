@@ -16,93 +16,139 @@ public class Funcionario {
     private Departamento deptno;
     private Cargo cargo;
     private int faltas;
+    private final int tam = 100;
+    private Funcionario fu[] = new Funcionario [tam];;
 
     
     public void Cadastro(){
         
+        cont cont = new cont();
         Departamento d = new Departamento();
         Cargo c = new Cargo();
         Scanner in  = new Scanner(System.in);
-        
+         
+        Funcionario f = new Funcionario();
         try{    
             System.out.println("Digite o numero de registro:");
-            numRegistro = in.nextInt();
+            f.numRegistro = in.nextInt();
             System.out.println("Digite o nome:");
-            nome = in.next();
+            f.nome = in.next();
             System.out.println("Digite o CPF:");
-            cpf = in.next();
+            f.cpf = in.next();
             System.out.println("Digite o Email:");
-            email = in.next();
+            f.email = in.next();
             System.out.println("Digite o Logradouro:");
-            logradouro = in.next();
+            f.logradouro = in.next();
             System.out.println("Digite o numero da residencia:");
-            numLogradouro = in.nextInt();
+            f.numLogradouro = in.nextInt();
             System.out.println("Digite o complemento:");
-            complemento = in.next();
+            f.complemento = in.next();
             System.out.println("Digite o salario bruto:");
-            salarioBruto = in.nextFloat();
+            f.salarioBruto = in.nextFloat();
             System.out.println("Digite a quantidade de dependentes");
-            qtDependentes = in.nextInt();
+            f.qtDependentes = in.nextInt();
             System.out.println("Digite o cargo");
             c.setNome(in.next());
             System.out.println("Digite o Departamento");
             d.setNome(in.next());
+            
+            fu[cont.cont] = f;
+            cont.cont++;
+            
         }catch(Exception e){
             System.out.println("erro:" + e);
         }
         
     }
     public float calcularSB(){
+        
         float SBR=0;
-        if (salarioBruto > 0) {
-            
-            SBR = salarioBruto -((salarioBruto/30)* faltas);
-            System.out.println("Seu salario Bruto é:"+ SBR);
-            
-        }else
-            System.out.println("Fassa seu cadastro para analizar seu salario.");
-        return SBR;
-    }
-    public void validarFaltas(){
-        Scanner in = new Scanner(System.in);
-        
-        System.out.println("Digite Suas faltas:");
-        faltas = in.nextInt();
-        while(faltas > 30){
-            if (faltas > 30) {
-                System.out.println("Digite um valor valido(de 1 a 30):");
-                faltas = in.nextInt();
+        int po = pesquisaNome();
+        validarFaltas(po);
+        if(po<=100){
+            if (fu[po].salarioBruto > 0) {
+
+                SBR = fu[po].salarioBruto -((fu[po].salarioBruto/30)* fu[po].faltas);
+                System.out.println("Seu salario Bruto é:"+ SBR);
+                fu[po].salarioBruto = SBR;
             }else
-                System.out.print("Erro!,");
+                System.out.println("Fassa seu cadastro para analizar seu salario.");
+            return SBR;
+        }else{
+            System.out.println("Nao existe esse funcionario.");
+            return 0;
         }
-        System.out.println(faltas +" Faltas.");
         
+    }
+    public void validarFaltas(int po){
+        Scanner in = new Scanner(System.in);
+        if (po <= 100) 
+        {
+            System.out.println("Digite Suas faltas:");
+            fu[po].faltas = in.nextInt();
+            while(fu[po].faltas > 30){
+                if (fu[po].faltas > 30) {
+                    System.out.println("Digite um valor valido(de 1 a 30):");
+                    fu[po].faltas = in.nextInt();
+                }else
+                    System.out.print("Erro!,");
+            }
+            System.out.println(fu[po].faltas +" Faltas.");
+        }else
+            System.out.println("Funcionario nao existe.");
     }
     public void calcularSL(){
-        float SBR = calcularSB(),SL=0;
+        int po = pesquisaNome();
         
-        if(SBR > 0){
-            if (SBR <= 1903.98) {
-                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto * 0)));
-            }
-            if (SBR <= 2826.65 && SBR > 1903.98) {
-                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.705)));
-            }
-            if (SBR <= 3751.05 && SBR > 2826.65) {
-                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.15)));
-            }
-            if (SBR <= 4664.68 && SBR > 3751.05) {
-                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.2205)));
-            }
-            if (SBR > 4664.68) {
-                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.2705)));
-            }
-            
-            System.out.println("Salario Liquido:"+SL);
-            
-        }else
-            System.out.println("Erro");
+        float SL=0,SBR = fu[po].salarioBruto;
+        
+        if(po<=100){
+            if(SBR > 0){
+                if (SBR <= 1903.98) {
+                    SL = (float) (SBR - ((fu[po].salarioBruto * 0.11) + (fu[po].salarioBruto * 0)));
+                }
+                if (SBR <= 2826.65 && SBR > 1903.98) {
+                    SL = (float) (SBR - ((fu[po].salarioBruto * 0.11) + (fu[po].salarioBruto*0.075)));
+                }
+                if (SBR <= 3751.05 && SBR > 2826.65) {
+                    SL = (float) (SBR - ((fu[po].salarioBruto * 0.11) + (fu[po].salarioBruto*0.15)));
+                }
+                if (SBR <= 4664.68 && SBR > 3751.05) {
+                    SL = (float) (SBR - ((fu[po].salarioBruto * 0.11) + (fu[po].salarioBruto*0.225)));
+                }
+                if (SBR > 4664.68) {
+                    SL = (float) (SBR - ((fu[po].salarioBruto * 0.11) + (fu[po].salarioBruto*0.275)));
+                }
+
+                System.out.println("Salario Liquido:"+SL);
+
+            }else
+                System.out.println("Erro");
+        }
+        else
+            System.out.println("Funcionario nao existe");
     }
+    public int pesquisaNome(){
+        int po =150;
+        
+        Scanner in = new Scanner(System.in);
+        
+        System.out.println("Digite o nome do funcionario:");
+        String nome = in.next();
+        
+        try{
+            for (int i = 0; i <= cont.cont; i++) {
+                if (fu[i].getNome().equals(nome)) {
+                    po = i;
+                    return po;
+                }
+            }
+        }catch(Exception e){
+            System.out.println("Erro:" + e);
+        }
+        return po;
+    }
+            
    
     /**
      * @return the numRegistro
