@@ -3,20 +3,52 @@ package Funcoes;
 import java.util.Scanner;
 
 public class Cargo {
+    
     private int id;
     private String nome;
     private String titulacaoMinima;
+    private Cargo cargo[] = new Cargo [10];
+    
+    
+    public void Cargo(){
+        
+        Cargo cargo = new Cargo(); 
+        cont f = new cont();
+        
+        cargo.id = (f.contC+1);
+        cargo.nome = "operador";
+        cargo.titulacaoMinima = "Major";
+        
+        this.cargo[f.contC] = cargo;
+        f.contC++;
+        
+        cargo.id = (f.contC+1);
+        cargo.nome = "Supervisor";
+        cargo.titulacaoMinima = "tenente";
+        
+        this.cargo[f.contC] = cargo;
+        f.contC++;
+    }
     
     public void cadastrarCargo(){
         
         Scanner in = new Scanner(System.in);
+        Cargo cargo = new Cargo(); 
+        cont f = new cont();
+        
+        cargo.id = (f.contC+1);
         
         System.out.println("Digite o cargo:");
-        nome = in.next();
-        System.out.println("Digite a titulacao minima:");
-        titulacaoMinima = in.next();
+        cargo.nome = in.next();
         
-        id++;
+        System.out.println("Digite a titulacao minima:");
+        cargo.titulacaoMinima = in.next();
+        
+        this.cargo[f.contC] = cargo;
+        f.contC++;
+    }
+    public void pesquisaCargo(){
+        
     }
 
     /**

@@ -4,51 +4,67 @@ import java.util.Scanner;
 
 public class Departamento {
     
-    private int id;
+    
     private String nome;
     private int ramal;
     private String email;
     private Funcionario diretor;
+    private Departamento depno[] = new Departamento [10];
+    
+    public void Departamento(){
+       Departamento departamento = new Departamento();
+       cont c = new cont();
+       departamento.nome = "Logista";
+       departamento.email = "Logista@log.com";
+       departamento.ramal = 4545;
+       
+       depno[c.contD] = departamento;
+       c.contD++;
+       
+       departamento.nome = "Financeiro";
+       departamento.email = "finan@fin.com";
+       departamento.ramal = 5454;
+       
+       depno[c.contD] = departamento;
+       c.contD++;
+    }
     
     public void cadastrarDepto(){
         
         Scanner in = new Scanner(System.in);
+        Departamento departamento = new Departamento();
+        cont c = new cont();
         
         System.out.println("Digite o nome do departamento:");
-        nome = in.next();
+        departamento.nome = in.next();
         System.out.println("Digite o Ramal:");
-        ramal = in.nextInt();
+        departamento.ramal = in.nextInt();
         System.out.println("Digite o email:");
-        email = in.next();
+        departamento.email = in.next();
         System.out.println("Digito o nome do diretor responsavel:");
-        diretor = buscaFuncionario();
+        departamento.diretor = buscaFuncionario();
         
-        id++;
+        depno[c.contD] = departamento;
+        c.contD++;
     }
     public Funcionario buscaFuncionario(){
         
         Funcionario f = new Funcionario();
+        cont Cont = new cont();
         Scanner in = new Scanner(System.in);
         
         System.out.println("Digite o nome do funcionario:");
         String nome = in.next();
         
+        for (int i = 0; i <= Cont.contD; i++) {
+            if(f.fu[cont.cont].equals(nome)){
+                return f.fu[i];
+            }
+        }
+        System.out.println("Funcionario nao existe.");
         return f;
     }
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
 
     /**
      * @return the nome

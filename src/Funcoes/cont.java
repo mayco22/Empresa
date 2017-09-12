@@ -1,5 +1,7 @@
 package Funcoes;
 
 public class cont {
-    static int cont =0;
+    static int cont;
+    static int contC;
+    static int contD;
 }

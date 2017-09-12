@@ -17,7 +17,7 @@ public class Funcionario {
     private Cargo cargo;
     private int faltas;
     private final int tam = 100;
-    private Funcionario fu[] = new Funcionario [tam];;
+    Funcionario fu[] = new Funcionario [tam];;
 
     
     public void Cadastro(){
@@ -33,20 +33,20 @@ public class Funcionario {
             f.numRegistro = in.nextInt();
             System.out.println("Digite o nome:");
             f.nome = in.next();
-            System.out.println("Digite o CPF:");
-            f.cpf = in.next();
-            System.out.println("Digite o Email:");
-            f.email = in.next();
-            System.out.println("Digite o Logradouro:");
-            f.logradouro = in.next();
-            System.out.println("Digite o numero da residencia:");
-            f.numLogradouro = in.nextInt();
-            System.out.println("Digite o complemento:");
-            f.complemento = in.next();
+            //System.out.println("Digite o CPF:");
+            //f.cpf = in.next();
+            //System.out.println("Digite o Email:");
+           // f.email = in.next();
+           // System.out.println("Digite o Logradouro:");
+            //f.logradouro = in.next();
+           // System.out.println("Digite o numero da residencia:");
+           // f.numLogradouro = in.nextInt();
+           // System.out.println("Digite o complemento:");
+           // f.complemento = in.next();
             System.out.println("Digite o salario bruto:");
             f.salarioBruto = in.nextFloat();
-            System.out.println("Digite a quantidade de dependentes");
-            f.qtDependentes = in.nextInt();
+           // System.out.println("Digite a quantidade de dependentes");
+          //  f.qtDependentes = in.nextInt();
             System.out.println("Digite o cargo");
             c.setNome(in.next());
             System.out.println("Digite o Departamento");
