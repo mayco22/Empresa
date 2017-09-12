@@ -17,12 +17,13 @@ public class Funcionario {
     private Cargo cargo;
     private int faltas;
     private final int tam = 100;
-    Funcionario fu[] = new Funcionario [tam];;
+    Funcionario fu[] = new Funcionario [tam];
+    static int cont;
 
     
     public void Cadastro(){
         
-        cont cont = new cont();
+        
         Departamento d = new Departamento();
         Cargo c = new Cargo();
         Scanner in  = new Scanner(System.in);
@@ -52,8 +53,8 @@ public class Funcionario {
             System.out.println("Digite o Departamento");
             d.setNome(in.next());
             
-            fu[cont.cont] = f;
-            cont.cont++;
+            fu[cont] = f;
+            cont++;
             
         }catch(Exception e){
             System.out.println("erro:" + e);
@@ -137,7 +138,7 @@ public class Funcionario {
         String nome = in.next();
         
         try{
-            for (int i = 0; i <= cont.cont; i++) {
+            for (int i = 0; i <= cont; i++) {
                 if (fu[i].getNome().equals(nome)) {
                     po = i;
                     return po;

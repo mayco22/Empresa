@@ -8,35 +8,36 @@ public class Cargo {
     private String nome;
     private String titulacaoMinima;
     private Cargo cargo[] = new Cargo [10];
+    static int contC;
     
     
     public void Cargo(){
         
         Cargo cargo = new Cargo(); 
-        cont f = new cont();
         
-        cargo.id = (f.contC+1);
+        
+        cargo.id = (contC+1);
         cargo.nome = "operador";
         cargo.titulacaoMinima = "Major";
         
-        this.cargo[f.contC] = cargo;
-        f.contC++;
+        this.cargo[contC] = cargo;
+        contC++;
         
-        cargo.id = (f.contC+1);
+        cargo.id = (contC+1);
         cargo.nome = "Supervisor";
         cargo.titulacaoMinima = "tenente";
         
-        this.cargo[f.contC] = cargo;
-        f.contC++;
+        this.cargo[contC] = cargo;
+        contC++;
     }
     
     public void cadastrarCargo(){
         
         Scanner in = new Scanner(System.in);
         Cargo cargo = new Cargo(); 
-        cont f = new cont();
         
-        cargo.id = (f.contC+1);
+        
+        cargo.id = (contC+1);
         
         System.out.println("Digite o cargo:");
         cargo.nome = in.next();
@@ -44,8 +45,8 @@ public class Cargo {
         System.out.println("Digite a titulacao minima:");
         cargo.titulacaoMinima = in.next();
         
-        this.cargo[f.contC] = cargo;
-        f.contC++;
+        this.cargo[contC] = cargo;
+        contC++;
     }
     public void pesquisaCargo(){
         

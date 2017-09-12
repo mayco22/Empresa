@@ -10,30 +10,31 @@ public class Departamento {
     private String email;
     private Funcionario diretor;
     private Departamento depno[] = new Departamento [10];
+    static int contD;
     
     public void Departamento(){
        Departamento departamento = new Departamento();
-       cont c = new cont();
+       
        departamento.nome = "Logista";
        departamento.email = "Logista@log.com";
        departamento.ramal = 4545;
        
-       depno[c.contD] = departamento;
-       c.contD++;
+       depno[contD] = departamento;
+       contD++;
        
        departamento.nome = "Financeiro";
        departamento.email = "finan@fin.com";
        departamento.ramal = 5454;
        
-       depno[c.contD] = departamento;
-       c.contD++;
+       depno[contD] = departamento;
+       contD++;
     }
     
     public void cadastrarDepto(){
         
         Scanner in = new Scanner(System.in);
         Departamento departamento = new Departamento();
-        cont c = new cont();
+        
         
         System.out.println("Digite o nome do departamento:");
         departamento.nome = in.next();
@@ -44,20 +45,20 @@ public class Departamento {
         System.out.println("Digito o nome do diretor responsavel:");
         departamento.diretor = buscaFuncionario();
         
-        depno[c.contD] = departamento;
-        c.contD++;
+        depno[contD] = departamento;
+        contD++;
     }
     public Funcionario buscaFuncionario(){
         
         Funcionario f = new Funcionario();
-        cont Cont = new cont();
+        
         Scanner in = new Scanner(System.in);
         
         System.out.println("Digite o nome do funcionario:");
         String nome = in.next();
         
-        for (int i = 0; i <= Cont.contD; i++) {
-            if(f.fu[cont.cont].equals(nome)){
+        for (int i = 0; i <= contD; i++) {
+            if(f.fu[f.cont].equals(nome)){
                 return f.fu[i];
             }
         }
