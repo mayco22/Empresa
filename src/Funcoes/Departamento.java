@@ -9,7 +9,7 @@ public class Departamento {
     private int ramal;
     private String email;
     private Funcionario diretor;
-    private Departamento depno[] = new Departamento [10];
+    static Departamento depno[] = new Departamento [10];
     static int contD;
     
     public void Departamento(){

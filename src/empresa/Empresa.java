@@ -13,6 +13,8 @@ public class Empresa {
         Departamento d = new Departamento();
         Scanner in = new Scanner(System.in);
         int menu=0;
+        c.Cargo();
+        d.Departamento();
       
         do{
             System.out.println("Digite Uma opcao:");
@@ -29,6 +31,7 @@ public class Empresa {
                    case 3:c.cadastrarCargo();break;
                    case 4:f.calcularSB();break;
                    case 5:f.calcularSL();break;
+                   case 6:break;
                    default:System.out.println("Opcao incorreta! Digite Novamente");break;
             }
         }
