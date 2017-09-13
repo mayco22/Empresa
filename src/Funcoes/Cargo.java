@@ -18,14 +18,14 @@ public class Cargo {
         
         cargo.id = (contC+1);
         cargo.nome = "operador";
-        cargo.titulacaoMinima = "Major";
+        cargo.titulacaoMinima = "Tecnico";
         
         this.cargo[contC] = cargo;
         contC++;
         
         cargo.id = (contC+1);
         cargo.nome = "Supervisor";
-        cargo.titulacaoMinima = "tenente";
+        cargo.titulacaoMinima = "Superior";
         
         this.cargo[contC] = cargo;
         contC++;
