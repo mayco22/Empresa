@@ -1,5 +1,5 @@
 package Funcoes;
-import empresa.Empresa;
+
 import java.util.Scanner;
 
 public class Funcionario {
@@ -13,168 +13,96 @@ public class Funcionario {
     private String complemento;
     private float salarioBruto;
     private int qtDependentes;
-    private Departamento deptno;
-    private Cargo cargo;
+    private String deptno;
+    private String cargo;
     private int faltas;
     
 
-    public void Funcionario(){
-        
-        Funcionario f = new Funcionario();
-        Departamento d = new Departamento();
-        Cargo c = new Cargo();
-        Empresa e = new Empresa();
-        
-        f.numRegistro = 3422;
-        f.nome = "lucas";
-        f.cpf = "324654782";
-        f.email = "lu@lu.com";
-        f.logradouro = "rua una";
-        f.numLogradouro = 321;
-        f.complemento = "Apartamento";
-        f.salarioBruto = 2050;
-        f.qtDependentes = 3;
-        f.deptno = e.depno[0];//compras
-        f.cargo = e.cargo[0]; //operador
-        
-        e.fu[e.contF] = f;
-        e.contF++;
-    }
-    
     public void Cadastro(){
         
-        Empresa e = new Empresa();
-        Departamento d = new Departamento();
-        Cargo c = new Cargo();
         Scanner in  = new Scanner(System.in);
-        Funcionario f = new Funcionario();
+        
         try{    
-//            System.out.println("Digite o numero de registro:");
-//            f.numRegistro = in.nextInt();
+            System.out.println("Digite o numero de registro:");
+            setNumRegistro(in.nextInt());
             System.out.println("Digite o nome:");
-            f.nome = in.next();
-//            System.out.println("Digite o CPF:");
-//            f.cpf = in.next();
-//            System.out.println("Digite o Email:");
-//            f.email = in.next();
-//            System.out.println("Digite o Logradouro:");
-//            f.logradouro = in.next();
-//            System.out.println("Digite o numero da residencia:");
-//            f.numLogradouro = in.nextInt();
-//            System.out.println("Digite o complemento:");
-//            f.complemento = in.next();
+            setNome(in.next());
+            System.out.println("Digite o CPF:");
+            setCpf(in.next());
+            System.out.println("Digite o Email:");
+            setEmail(in.next());
+            System.out.println("Digite o Logradouro:");
+            setLogradouro(in.next());
+            System.out.println("Digite o numero da residencia:");
+            setNumLogradouro(in.nextInt());
+            System.out.println("Digite o complemento:");
+            setComplemento(in.next());
             System.out.println("Digite o salario bruto:");
-            f.salarioBruto = in.nextFloat();
-//            System.out.println("Digite a quantidade de dependentes");
-//            f.qtDependentes = in.nextInt();
-            cargo = c.pesquisaCargo();
-//            System.out.println("Digite o Departamento");
-            deptno = d.buscaDept();
-            
-            e.fu[e.contF] = f;
-            e.contF++;
+            setSalarioBruto(in.nextInt());
+            System.out.println("Digite a quantidade de dependentes");
+            setQtDependentes(in.nextInt());
+            System.out.println("Digite o departamento:");
+            setDeptno(in.next());
+            System.out.println("Digite o  cargo");
+            setCargo(in.next());
             
         }catch(Exception h){
             System.out.println("erro:" + h);
         }
         
     }
-    public float calcularSB(){
-        
-        Empresa e = new Empresa();
+    public void calcularSB(){
         
         float SBR=0;
-        int po = pesquisaNome();
-        validarFaltas(po);
+        validarFaltas();
         
-        if(po<=100){
-            if (e.fu[po].salarioBruto > 0) {
-
-                SBR = e.fu[po].salarioBruto -((e.fu[po].salarioBruto/30)* e.fu[po].faltas);
-                System.out.println("Seu salario Bruto é:"+ SBR);
-                e.fu[po].salarioBruto = SBR;
-            }else
-                System.out.println("Fassa seu cadastro para analizar seu salario.");
-            return SBR;
-        }else{
-            System.out.println("Nao existe esse funcionario.");
-            return 0;
-        }
-        
-    }
-    public void validarFaltas(int po){
-        Scanner in = new Scanner(System.in);
-        Empresa e = new Empresa();
-        
-        if (po <= 100) 
-        {
-            System.out.println("Digite Suas faltas:");
-            e.fu[po].faltas = in.nextInt();
-            while(e.fu[po].faltas > 30){
-                if (e.fu[po].faltas > 30) {
-                    System.out.println("Digite um valor valido(de 1 a 30):");
-                    e.fu[po].faltas = in.nextInt();
-                }else
-                    System.out.print("Erro!,");
-            }
-            System.out.println(e.fu[po].faltas +" Faltas.");
+        if (salarioBruto > 0) {
+            SBR = salarioBruto -((salarioBruto/30)* faltas);
+            System.out.println("Seu salario Bruto é:"+ SBR);
+            salarioBruto = SBR;
         }else
-            System.out.println("Funcionario nao existe.");
+            System.out.println("Fassa seu cadastro para analizar seu salario.");
+    }
+    public void validarFaltas(){
+        
+        Scanner in = new Scanner(System.in);
+        
+        System.out.println("Digite Suas faltas:");
+        faltas = in.nextInt();
+        while(faltas > 30){
+            if (faltas > 30) {
+                System.out.println("Digite um valor valido(de 1 a 30):");
+                faltas = in.nextInt();
+            }else
+                System.out.print("Erro!,");
+        }
+        System.out.println(faltas +" Faltas.");
     }
     public void calcularSL(){
-        Empresa e = new Empresa();
-        int po = pesquisaNome();
-        float SL=0,SBR = e.fu[po].salarioBruto;
         
-        if(po<=100){
-            if(SBR > 0){
-                if (SBR <= 1903.98) {
-                    SL = (float) (SBR - ((e.fu[po].salarioBruto * 0.11) + (e.fu[po].salarioBruto * 0)));
-                }
-                if (SBR <= 2826.65 && SBR > 1903.98) {
-                    SL = (float) (SBR - ((e.fu[po].salarioBruto * 0.11) + (e.fu[po].salarioBruto*0.075)));
-                }
-                if (SBR <= 3751.05 && SBR > 2826.65) {
-                    SL = (float) (SBR - ((e.fu[po].salarioBruto * 0.11) + (e.fu[po].salarioBruto*0.15)));
-                }
-                if (SBR <= 4664.68 && SBR > 3751.05) {
-                    SL = (float) (SBR - ((e.fu[po].salarioBruto * 0.11) + (e.fu[po].salarioBruto*0.225)));
-                }
-                if (SBR > 4664.68) {
-                    SL = (float) (SBR - ((e.fu[po].salarioBruto * 0.11) + (e.fu[po].salarioBruto*0.275)));
-                }
-
-                System.out.println("Salario Liquido:"+SL);
-
-            }else
-                System.out.println("Erro");
-        }
-        else
-            System.out.println("Funcionario nao existe");
-    }
-    public int pesquisaNome(){
-        int po =150;
+        float SL=0,SBR = salarioBruto;
         
-        Scanner in = new Scanner(System.in);
-        Empresa e = new Empresa();
-        
-        System.out.println("Digite o nome do funcionario:");
-        String nome = in.next();
-        
-        try{
-            for (int i = 0; i <= e.contF; i++) {
-                if (e.fu[i].getNome().equals(nome)) {
-                    po = i;
-                    return po;
-                }
+        if(SBR > 0){
+            if (SBR <= 1903.98) {
+                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto * 0)));
             }
-        }catch(Exception h){
-            System.out.println("Erro:" + h);
-        }
-        return po;
+            if (SBR <= 2826.65 && SBR > 1903.98) {
+                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.075)));
+            }
+            if (SBR <= 3751.05 && SBR > 2826.65) {
+                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.15)));
+            }
+            if (SBR <= 4664.68 && SBR > 3751.05) {
+                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.225)));
+            }
+            if (SBR > 4664.68) {
+                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.275)));
+            }
+            System.out.println("Salario Liquido:"+SL);
+        }else
+        System.out.println("Erro");
     }
-            
-   
+    
     /**
      * @return the numRegistro
      */
@@ -304,28 +232,28 @@ public class Funcionario {
     /**
      * @return the deptno
      */
-    public Departamento getDeptno() {
+    public String getDeptno() {
         return deptno;
     }
 
     /**
      * @param deptno the deptno to set
      */
-    public void setDeptno(Departamento deptno) {
+    public void setDeptno(String deptno) {
         this.deptno = deptno;
     }
 
     /**
      * @return the cargo
      */
-    public Cargo getCargo() {
+    public String getCargo() {
         return cargo;
     }
 
     /**
      * @param cargo the cargo to set
      */
-    public void setCargo(Cargo cargo) {
+    public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 }
