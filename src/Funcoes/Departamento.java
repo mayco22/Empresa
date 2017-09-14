@@ -1,6 +1,5 @@
 package Funcoes;
 
-import empresa.Empresa;
 import java.util.Scanner;
 
 public class Departamento {
@@ -9,22 +8,20 @@ public class Departamento {
     private String nome;
     private int ramal;
     private String email;
-    private Funcionario diretor;
+    private String diretor;
     
     public void cadastrarDepto(){
         
         Scanner in = new Scanner(System.in);
-        Departamento departamento = new Departamento();
         
-        String nomeD ;
         System.out.println("Digite o nome do departamento:");
-        departamento.nome = in.next();
+        setNome(in.next());
         System.out.println("Digite o Ramal:");
-        departamento.ramal = in.nextInt();
+        setRamal(in.nextInt());
         System.out.println("Digite o email:");
-        departamento.email = in.next();
+        setEmial(in.next());
         System.out.println("Digite Nome do diretor:");
-        nomeD = in.next();
+        setDiretor(in.next());
     }
     
     /**
@@ -72,14 +69,14 @@ public class Departamento {
     /**
      * @return the diretor
      */
-    public Funcionario getDiretor() {
+    public String getDiretor() {
         return diretor;
     }
 
     /**
      * @param diretor the diretor to set
      */
-    public void setDiretor(Funcionario diretor) {
+    public void setDiretor(String diretor) {
         this.diretor = diretor;
     }
 }

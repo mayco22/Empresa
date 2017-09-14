@@ -1,6 +1,5 @@
 package Funcoes;
 
-import empresa.Empresa;
 import java.util.Scanner;
 
 public class Cargo {
@@ -10,15 +9,13 @@ public class Cargo {
     private String titulacaoMinima;
     
     public void CadastraCargo(){
+        Scanner in = new Scanner(System.in);
         
-        Scanner s = new Scanner(System.in);
-        Cargo c = new Cargo();
-        
-        c.setId(id);
+        setId(in.nextInt());
         System.out.println("Digite o Nome.: ");
-        c.setNome(s.next());
+        setNome(in.next());
         System.out.println("Digite a Titulação.: ");
-        c.setTitulacaoMinima(s.next()); 
+        setTitulacaoMinima(in.next()); 
     }
     /**
      * @return the id

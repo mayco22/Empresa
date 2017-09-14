@@ -23,29 +23,30 @@ public class Funcionario {
         Scanner in  = new Scanner(System.in);
         
         try{    
-            System.out.println("Digite o numero de registro:");
-            setNumRegistro(in.nextInt());
-            System.out.println("Digite o nome:");
-            setNome(in.next());
-            System.out.println("Digite o CPF:");
-            setCpf(in.next());
-            System.out.println("Digite o Email:");
-            setEmail(in.next());
-            System.out.println("Digite o Logradouro:");
-            setLogradouro(in.next());
-            System.out.println("Digite o numero da residencia:");
-            setNumLogradouro(in.nextInt());
-            System.out.println("Digite o complemento:");
-            setComplemento(in.next());
+//            System.out.println("Digite o numero de registro:");
+//            setNumRegistro(in.nextInt());
+//            System.out.println("Digite o nome:");
+//            setNome(in.next());
+//            System.out.println("Digite o CPF:");
+//            setCpf(in.next());
+//            System.out.println("Digite o Email:");
+//            setEmail(in.next());
+//            System.out.println("Digite o Logradouro:");
+//            setLogradouro(in.next());
+//            System.out.println("Digite o numero da residencia:");
+//            setNumLogradouro(in.nextInt());
+//            System.out.println("Digite o complemento:");
+//            setComplemento(in.next());
             System.out.println("Digite o salario bruto:");
             setSalarioBruto(in.nextInt());
-            System.out.println("Digite a quantidade de dependentes");
-            setQtDependentes(in.nextInt());
-            System.out.println("Digite o departamento:");
-            setDeptno(in.next());
-            System.out.println("Digite o  cargo");
-            setCargo(in.next());
-            
+//            System.out.println("Digite a quantidade de dependentes");
+//            setQtDependentes(in.nextInt());
+//            System.out.println("Digite o departamento:");
+//            setDeptno(in.next());
+//            System.out.println("Digite o  cargo");
+//            setCargo(in.next());
+            System.out.println("Digite as faltas:");
+            setFaltas(in.nextInt());
         }catch(Exception h){
             System.out.println("erro:" + h);
         }
@@ -54,51 +55,54 @@ public class Funcionario {
     public void calcularSB(){
         
         float SBR=0;
-        validarFaltas();
-        
-        if (salarioBruto > 0) {
+       
+        if (salarioBruto > 0 && faltas <= 30) {
             SBR = salarioBruto -((salarioBruto/30)* faltas);
             System.out.println("Seu salario Bruto é:"+ SBR);
             salarioBruto = SBR;
         }else
-            System.out.println("Fassa seu cadastro para analizar seu salario.");
+            System.out.println("Salario nao cadastrado ou faltas acima do permitido");
     }
     public void validarFaltas(){
         
         Scanner in = new Scanner(System.in);
         
         System.out.println("Digite Suas faltas:");
-        faltas = in.nextInt();
-        while(faltas > 30){
-            if (faltas > 30) {
+        setFaltas(in.nextInt());
+        while(getFaltas() > 30){
+            if (getFaltas() > 30) {
                 System.out.println("Digite um valor valido(de 1 a 30):");
-                faltas = in.nextInt();
+                setFaltas(in.nextInt());
             }else
                 System.out.print("Erro!,");
         }
-        System.out.println(faltas +" Faltas.");
+        System.out.println(getFaltas() +" Faltas.");
     }
     public void calcularSL(){
         
-        float SL=0,SBR = salarioBruto;
+        float SL=0,SBR =0;
         
-        if(SBR > 0){
-            if (SBR <= 1903.98) {
+        if (salarioBruto > 0 && faltas <= 30) {
+            SBR = salarioBruto -((salarioBruto/30)* faltas);
+        }
+        if(SBR > 0 && faltas <= 30){
+            if (salarioBruto <= 1903.98) {
                 SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto * 0)));
             }
-            if (SBR <= 2826.65 && SBR > 1903.98) {
-                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.075)));
+            if (salarioBruto <= 2826.65 && salarioBruto > 1903.98) {
+                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto * 0.075)));
             }
-            if (SBR <= 3751.05 && SBR > 2826.65) {
-                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.15)));
+            if (salarioBruto <= 3751.05 && salarioBruto > 2826.65) {
+                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto * 0.15)));
             }
-            if (SBR <= 4664.68 && SBR > 3751.05) {
-                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.225)));
+            if (salarioBruto <= 4664.68 && salarioBruto > 3751.05) {
+                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto * 0.225)));
             }
-            if (SBR > 4664.68) {
-                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto*0.275)));
+            if (salarioBruto > 4664.68) {
+                SL = (float) (SBR - ((salarioBruto * 0.11) + (salarioBruto * 0.275)));
             }
             System.out.println("Salario Liquido:"+SL);
+            setSalarioBruto(SL);
         }else
         System.out.println("Erro");
     }
@@ -255,5 +259,19 @@ public class Funcionario {
      */
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    /**
+     * @return the faltas
+     */
+    public int getFaltas() {
+        return faltas;
+    }
+
+    /**
+     * @param faltas the faltas to set
+     */
+    public void setFaltas(int faltas) {
+        this.faltas = faltas;
     }
 }
