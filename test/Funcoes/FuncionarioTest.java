@@ -18,14 +18,13 @@ public class FuncionarioTest {
      * Test of pesquisaNome method, of class Funcionario.
      */
     @Test
-    public void testPesquisaNome() {
-        System.out.println("pesquisaNome");
-        Funcionario instance = new Funcionario();
-        int expResult = 0;
-        int result = instance.pesquisaNome();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void salarioBruto() {
+        Funcionario f = new Funcionario();
+        f.fu[0].nome = "roberto";
+        f.fu[0].salarioBruto = 2200;
+        f.fu[0].calcularSB();
+        assertEquals("",2200,f.fu[0].salarioBruto,0.0);
+        
     }
 
     

@@ -1,5 +1,6 @@
 package Funcoes;
 
+import empresa.Empresa;
 import java.util.Scanner;
 
 public class Cargo {
@@ -7,39 +8,30 @@ public class Cargo {
     private int id;
     private String nome;
     private String titulacaoMinima;
-    static Cargo cargo[] = new Cargo [10];
-    static int contC = 0;
     
     
-    public static void Cargo(){
-        
+    
+    public void CadastraCargo(){
+        Scanner s = new Scanner(System.in);
         Cargo c = new Cargo();
-        Cargo c1 = new Cargo();  
         
+        c.setId(Empresa.contC);
+        System.out.println("Digite o Nome.: ");
+        c.setNome(s.next());
+        System.out.println("Digite a Titulação.: ");
+        c.setTitulacaoMinima(s.next()); 
         
-        c.id = contC;
-        c.nome = "operador";
-        c.titulacaoMinima = "Tecnico";
-        
-        cargo[contC] = c;
-        contC++;
-        
-        c1.id = contC;
-        c1.nome = "Supervisor";
-        c1.titulacaoMinima = "Superior";
-        
-        cargo[contC] = c1;
-        contC++;
-        
+        Empresa.cargo[Empresa.contC] = c;
+        Empresa.contC++;
     }
     
     public void cadastrarCargo(){
         
         Scanner in = new Scanner(System.in);
         Cargo c = new Cargo(); 
+        Empresa e = new Empresa();
         
-        
-        c.id = (contC+1);
+        c.id = (e.contC+1);
         
         System.out.println("Digite o cargo:");
         c.nome = in.next();
@@ -47,30 +39,29 @@ public class Cargo {
         System.out.println("Digite a titulacao minima:");
         c.titulacaoMinima = in.next();
         
-        cargo[contC] = c;
-        contC++;
+        e.cargo[e.contC] = c;
+        e.contC++;
     }
     public Cargo pesquisaCargo(){
         
         Cargo c = new Cargo();
         Scanner in = new Scanner(System.in);
+        Empresa e = new Empresa();
         
-        int resposta=0;
+        int resposta=0,h=0;
         
         System.out.println("Cargos existentes:");
-        
-        for (int i = 0; i < 1; i++) {
-            System.out.println("Digite uma opcao:");
-            for (int j = 0; j <= contC; j++) {
-                System.out.println((j+1)+"."+cargo[j].nome);
-            }
-            resposta = in.nextInt();
-            if(resposta > contC)
-                System.out.println("");
-            else
-                return cargo[resposta-1];
+        while(h < e.contC){
+            System.out.println(h+"."+e.cargo[h].nome);
+            h++;
         }
-        return c;
+        System.out.println("Digite uma opcao:");
+        resposta = in.nextInt();
+        if(resposta > e.contC){
+            System.out.println("Cargo nao existe.");
+            return null;
+        }else
+            return e.cargo[resposta];
     }
 
     /**

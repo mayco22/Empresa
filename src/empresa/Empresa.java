@@ -5,17 +5,23 @@ import Funcoes.Cargo;
 import java.util.Scanner;
 
 public class Empresa {
-
+    
+    public static Departamento depno[] = new Departamento [10];
+    public static int contD;
+    public static Cargo cargo[] = new Cargo [10];
+    public static int contC;
+    public static Funcionario fu[] = new Funcionario [100];
+    public static int contF;
+    
     public static void main(String[] args) {
 
         Funcionario f = new Funcionario();
-        Cargo c = new Cargo();
+       // Cargo c = new Cargo();
         Departamento d = new Departamento();
+        
         Scanner in = new Scanner(System.in);
         int menu=0;
-        c.Cargo();
-        d.Departamento();
-      
+        
         do{
             System.out.println("Digite Uma opcao:");
             System.out.println("1.Cadastrar Funcionario.");
@@ -28,7 +34,12 @@ public class Empresa {
             switch(menu){
                    case 1:f.Cadastro();break;
                    case 2:d.cadastrarDepto();break;
-                   case 3:c.cadastrarCargo();break;
+                   case 3:
+                       
+                       Cargo c = new Cargo();
+                       c.CadastraCargo();
+                       
+                   break;
                    case 4:f.calcularSB();break;
                    case 5:f.calcularSL();break;
                    case 6:break;
